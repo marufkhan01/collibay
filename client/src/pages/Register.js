@@ -36,13 +36,14 @@ static getDerivedStateFromProps(nextProps, prevState){
     }
 
     submitHandler = event => {
-        event.preventDefault()
+        event.preventDefault() //prevent the page to reload when the form is submitted
+
         this.props.register({...intialstate}, this.props.history)
 
         // clean text field
-        this.myForm.current.reset()
-        this.setState({
-            ...intialstate
+         this.myForm.current.reset()
+         this.setState({
+             ...intialstate
         })
     }
 
@@ -105,7 +106,7 @@ static getDerivedStateFromProps(nextProps, prevState){
                         <div className="form-group">
                             <label htmlFor='confirmPassword'>Confirm Password: </label>
                             <input
-                                type="confirmPassword"
+                                type="password"
                                 className= { error.confirmPassword ? 'form-control is-invalid': 'form-control'}
                                 placeholder="Enter your Confirm Password"
                                 name= 'confirmPassword'

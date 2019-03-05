@@ -1,6 +1,6 @@
-import React, {Component} from "react";
-import { Nav, NavItem,Navbar,NavbarBrand, NavLink } from "reactstrap";
-import { Link } from "react-router-dom";
+import React, {Component} from "react"
+import { Nav, NavItem,Navbar,NavbarBrand, NavLink } from "reactstrap"
+import { Link } from "react-router-dom"
 import './navbar.css'
 
 class TopNavbar extends Component{
@@ -10,7 +10,8 @@ class TopNavbar extends Component{
     return(
         <Navbar color="" light expand="md">
           <NavbarBrand tag={Link} to="/">
-          <img src="../images/logo.png"  
+          <img src="../images/logo.png" 
+            alt="" 
             width="40"
             height="30"
             className="d-inline-block align-top"/>
@@ -38,4 +39,4 @@ class TopNavbar extends Component{
     )
   }
 }
-export default TopNavbar;
+export default TopNavbar

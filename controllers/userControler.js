@@ -17,6 +17,7 @@ module.exports = {
 
         User.findOne({email})
             .then(user => {
+                console.log(user)
                 if(!user){
                     return resourceError(res, 'User not found')
                 }

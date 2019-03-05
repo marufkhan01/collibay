@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import "./App.css";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-//import { Container } from "reactstrap";
+import React, { Component } from "react"
+import "./App.css"
+import { BrowserRouter, Route, Switch } from "react-router-dom"
+//import { Container } from "reactstrap"
 
 import Home from "../pages/Home"
 import Login from "../pages/Login"
@@ -26,4 +26,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App

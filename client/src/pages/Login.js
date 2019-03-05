@@ -1,5 +1,7 @@
 import React,{Component} from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { login } from '../store/actions/authActions' 
 
 const intialstate = {
     email:'',
@@ -18,6 +20,16 @@ class Login extends Component {
        ...intialstate   
     }
 
+
+    static getDerivedStateFromProps(nextProps, prevState){
+        if(JSON.stringify(nextProps.auth.error) !== JSON.stringify(prevState.error)){
+            return{
+                error: nextProps.auth.error
+            }
+        }
+        return null
+    }
+
     changehandler = event => {
         this.setState({
             [event.target.name]:event.target.value
@@ -26,6 +38,8 @@ class Login extends Component {
 
     submitHandler = event => {
         event.preventDefault();
+
+        this.props.login({...intialstate}, this.props.history)
 
           // clean text field
         this.myForm.current.reset()
@@ -48,26 +62,33 @@ class Login extends Component {
                             <label htmlFor='email'>Email: </label>
                             <input
                                 type="email"
-                                className= "form-group"
+                                className= { error.email ? 'form-control is-invalid': 'form-control'}
                                 placeholder="Enter your Email"
                                 name= 'email'
                                 id= 'email'
                                 value={email}
                                 onChange = {this.changehandler}
                             />
+                            {error.email && <div className ="invalid-feedback"> 
+                                {error.email}
+                            </div>}
+
                         </div>
 
                         <div className="form-group">
                             <label htmlFor='password'>Password: </label>
                             <input
                                 type="password"
-                                className= "form-group"
+                                className= { error.password ? 'form-control is-invalid': 'form-control'}
                                 placeholder="Enter your Password"
                                 name= 'password'
                                 id= 'password'
                                 value={password}
                                 onChange = {this.changehandler}
                             />
+                            {error.password && <div className ="invalid-feedback"> 
+                                {error.password}
+                            </div>}
                         </div>
                         
                         <Link to='/register'>Don't have account? Please Register Here.</Link>
@@ -80,4 +101,7 @@ class Login extends Component {
     }
 }
 
-export default Login
+const mapStateToProps = state => ({
+    auth: state.auth
+})
+export default connect(mapStateToProps, {login}) (Login)
